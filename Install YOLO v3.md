@@ -45,8 +45,7 @@ sudo cp /usr/local/cuda-9.0/lib64/libcudnn.so.7 /usr/local/lib/libcudnn.so.7 && 
 ```
 
 #### 4.测试
-![predictions.png]({{site.baseurl}}/predictions.png)![]({{site.baseurl}}//predictions.jpg)![predictions.jpg]({{site.baseurl}}/predictions.jpg)
-
+![predictions.png]({{site.baseurl}}/images/predictions.png)
 
 dog: 99%
 

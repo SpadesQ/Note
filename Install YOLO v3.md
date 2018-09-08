@@ -43,3 +43,10 @@ sudo cp /usr/local/cuda-9.0/lib64/libcurand.so.9.0 /usr/local/lib/libcurand.so.9
 sudo cp /usr/local/cuda-9.0/lib64/libcudnn.so.7 /usr/local/lib/libcudnn.so.7 && sudo ldconfig
 
 ```
+
+#### 4.测试
+![predictions.png]({{site.baseurl}}/predictions.png)
+dog: 99%
+truck: 92%
+bicycle: 99%
+

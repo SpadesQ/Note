@@ -15,9 +15,11 @@ DEBUG=0
 
 #### 3.可能出错的地方
 - opencv
+
 请确保opencv已安装好
 
 - darknet - yolo - /bin/sh: 1: nvcc: not found
+
 在 /etc/profile 文件末尾添加如下环境变量
 ```
 export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}

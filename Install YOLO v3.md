@@ -1,6 +1,6 @@
 ## Install YOLO v3
 
-#### 1.安装这个流程无误[YOLO]（https://pjreddie.com/darknet/yolo/）
+#### 1.安装这个流程无误[YOLO](https://pjreddie.com/darknet/yolo/）
 
 #### 2.使用GPU注意事项
 makefile文件里

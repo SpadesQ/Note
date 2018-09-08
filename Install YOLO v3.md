@@ -1,8 +1,8 @@
 ## Install YOLO v3
 
-#### 安装这个流程无误[YOLO]（https://pjreddie.com/darknet/yolo/）
+#### 1.安装这个流程无误[YOLO]（https://pjreddie.com/darknet/yolo/）
 
-#### 使用GPU注意事项
+#### 2.使用GPU注意事项
 makefile文件里
 ```
 GPU=1
@@ -13,7 +13,7 @@ DEBUG=0
 ```
 然后重新make
 
-#### 可能出错的地方
+#### 3.可能出错的地方
 - opencv
 请确保opencv已安装好
 
@@ -41,5 +41,3 @@ sudo cp /usr/local/cuda-9.0/lib64/libcurand.so.9.0 /usr/local/lib/libcurand.so.9
 sudo cp /usr/local/cuda-9.0/lib64/libcudnn.so.7 /usr/local/lib/libcudnn.so.7 && sudo ldconfig
 
 ```
-
-

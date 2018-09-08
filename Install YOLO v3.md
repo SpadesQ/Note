@@ -27,10 +27,10 @@ export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY
 ```
 然后在darknet目录中
 ```
- . /etc/profile
- source /etc/profile
- make clean
- make
+. /etc/profile
+source /etc/profile
+make clean
+make
  ```
 其中 . 和 /etc/profile 之间有空格
 

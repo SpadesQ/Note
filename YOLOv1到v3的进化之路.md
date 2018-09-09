@@ -21,7 +21,7 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 - 每个网格要预测 B 个 bounding box，每个 bounding box 除了要回归自身的位置之外，还要附带预测一个 confidence 值。
 
 这个 confidence 代表了所预测的 box 中含有 object 的置信度和这个 box 预测的有多准这两重信息，其值是这样计算的： 
-![20180606164218784.png](/images/20180606164218784.png)
+<div align=center><img src="/images/20180606164218784.png"/></div>
 
 这个置信度并不只是该边界框是待检测目标的概率，而是该边界框是**待检测目标的概率乘上该边界框和真实位置的IOU**（框之间的交集除以并集）的积。通过乘上这个交并比，反映出该边界框预测位置的精度。
 
@@ -31,24 +31,24 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 网络结构：
 
-![20180606164310266.png](/images/20180606164310266.png)
+<div align=center><img src="/images/20180606164310266.png"/></div>\
 
 在test的非极大值抑制阶段，每个网格预测的 class 信息和 bounding box 预测的 confidence信息相乘，就得到每个 bounding box 的 class-specific confidence score，即下式衡量该框是否应该予以保留。
 
-![20180606164339450.png](/images/20180606164339450.png)
+<div align=center><img src="/images/20180606164339450.png"/></div>
 
 ### 3. YOLO v1的损失函数
 
 YOLO v1全部使用了均方差（mean squared error）作为损失（loss）函数。由三部分组成：坐标误差、IOU误差和分类误差。
 
-![20180606164516310.png](/images/20180606164516310.png)
+<div align=center><img src="/images/20180606164516310.png"/></div>
 
 - 更重视8维的坐标预测，给这些损失前面赋予更大的 loss weight, 记为在 pascal VOC 训练中取 5。
 - 对没有 object 的 box 的 confidence loss，赋予小的 loss weight，记为在 pascal VOC 训练中取 0.5。
 - 有 object 的 box 的 confidence loss 和类别的 loss 的 loss weight 正常取 1。
 - 对不同大小的 box 预测中，相比于大 box 预测偏一点，小 box 预测偏一点肯定更不能被忍受的。而 sum-square error loss 中对同样的偏移 loss 是一样。为了缓和这个问题，作者用了一个比较取巧的办法，就是将 box 的 width 和 height 取平方根代替原本的 height 和 width。这个参考下面的图很容易理解，小box的横轴值较小，发生偏移时，反应到y轴上相比大 box 要大。（也是个近似逼近方式）
 
-![20180606164449500.png](/images/20180606164449500.png)
+<div align=center><img src="/images/20180606164449500.png"/></div>
 
 ### 4. YOLO v1的缺点
  
@@ -87,13 +87,13 @@ YOLO 一代包含有全连接层，从而能直接预测 Bounding Boxes 的坐�
 
 Anchor boxes的宽高维度往往是精选的先验框（hand-picked priors）也就是说人工选定的先验框。虽然在训练过程中网络也会学习调整框的宽高维度，最终得到准确的bounding boxes。但是，如果一开始就选择了更好的、更有代表性的先验框维度，那么网络就更容易学到准确的预测位置。为了优化，在训练集的 Bounding Boxes 上跑一下 k-means聚类，来找到一个比较好的值。
 
-![20180527230952967756.png](/images/20180527230952967756.png)
+<div align=center><img src="/images/20180527230952967756.png"/></div>
 
 可以看出k=5在模型复杂度与召回率之间取一个折中值。
 
 用 Anchor Box 的方法，会让 model 变得不稳定，尤其是在最开始的几次迭代的时候。大多数不稳定因素产生自预测 Box 的（x,y）位置的时候。按照之前 YOLO的方法，网络不会预测偏移量，而是根据 YOLO 中的网格单元的位置来预测坐标，这就让 Ground Truth 的值介于 0 到 1 之间。而为了让网络的结果能落在这一范围内，网络使用一个 Logistic Activation 来对于网络预测结果进行限制，让结果介于 0 到 1 之间。 网络在每一个网格单元中预测出 5 个 Bounding Boxes，每个 Bounding Boxes 有五个坐标值 tx，ty，tw，th，t0，他们的关系见下图（Figure3）。假设一个网格单元对于图片左上角的偏移量是 cx、cy，Bounding Boxes Prior 的宽度和高度是 pw、ph，那么预测的结果见下图右面的公式： 
 
-![20180606164911315.png](/images/20180606164911315.png)
+<div align=center><img src="/images/20180606164911315.png"/></div>
 
 **Fine-Grained Features**
 
@@ -121,7 +121,7 @@ YOLOv2去掉YOLOv1的全连接层，同时去掉YOLO v1的最后一个池化层�
 
 作者选择在COCO和ImageNet数据集上进行联合训练，遇到的第一问题是两者的类别并不是完全互斥的，比如"Norfolk terrier"明显属于"dog"，所以作者提出了一种层级分类方法（Hierarchical classification），根据各个类别之间的从属关系（根据WordNet）建立一种树结构WordTree，结合COCO和ImageNet建立的词树（WordTree）如下图所示：
 
-![20180527230953639656.png](/images/20180527230953639656.png)
+<div align=center><img src="/images/20180527230953639656.png"/></div>
 
 WordTree中的根节点为"physical object"，每个节点的子节点都属于同一子类，可以对它们进行softmax处理。在给出某个类别的预测概率时，需要找到其所在的位置，遍历这个路径，然后计算路径上各个节点的概率之积。
 
@@ -140,7 +140,7 @@ WordTree中的根节点为"physical object"，每个节点的子节点都属于�
 原来的YOLO v2有一个层叫：passthrough layer，假设最后提取的feature map的size是13*13，那么这个层的作用就是将前面一层的26*26的feature map和本层的13*13的feature map进行连接，有点像ResNet。这样的操作也是为了加强YOLO算法对小目标检测的精确度。这个思想在YOLO v3中得到了进一步加强，在YOLO v3中采用类似FPN的上采样（upsample）和融合做法（最后融合了3个scale，其他两个scale的大小分别是26*26和52*52），在多个scale的feature map上做检测，对于小目标的检测效果提升还是比较明显的。虽然在YOLO v3中每个网格预测3个边界框，看起来比YOLO v2中每个grid cell预测5个边界框要少，但因为YOLO v3采用了多个尺度的特征融合，所以边界框的数量要比之前多很多。
 
 ### darknet-53
-![20180527230953899432.png](/images/20180527230953899432.png)
+<div align=center><img src="/images/20180527230953899432.png"/></div>
 
 ## References
 

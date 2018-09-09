@@ -8,6 +8,7 @@
 
 后来的Fast R-CNN，Faster R-CNN[16]虽有改进，比如不再是将图片一块块的传进CNN提取特征，而是整体放进CNN提取特征图后，再做进一步处理，但依旧是整体流程分为 ‘区域提取’和‘目标分类’两部分（two-stage），这样做的一个特点是虽然确保了精度，但速度非常慢，于是以YOLO（You only look once）为主要代表的这种一步到位(one-stage)即端到端的目标检测算法应运而生了。
 
+[基于深度学习的目标检测技术演进：R-CNN、Fast R-CNN、Faster R-CNN ](https://www.cnblogs.com/skyfsm/p/6806246.html)
 
 ## YOLO V1 一步检测的开山之作
 

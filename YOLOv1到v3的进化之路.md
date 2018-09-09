@@ -6,6 +6,7 @@
 
 后来的Fast R-CNN，Faster R-CNN[16]虽有改进，比如不再是将图片一块块的传进CNN提取特征，而是整体放进CNN提取特征图后，再做进一步处理，但依旧是整体流程分为 ‘区域提取’和‘目标分类’两部分（two-stage），这样做的一个特点是虽然确保了精度，但速度非常慢，于是以YOLO（You only look once）为主要代表的这种一步到位(one-stage)即端到端的目标检测算法应运而生了。
 
+
 ### YOLO V1 一步检测的开山之作
 
 #### 1. YOLO v1的核心思想
@@ -56,6 +57,26 @@ YOLO v1全部使用了均方差（mean squared error）作为损失（loss）函
 - YOLO 的损失函数中，大物体 IOU 误差和小物体 IOU 误差对网络训练中 loss 贡献值接近（虽然采用求平方根方式，但没有根本解决问题）。因此，对于小物体，小的 IOU 误差也会对网络优化过程造成很大的影响，从而降低了物体检测的定位准确性。
 
 
+### YOLOv2/YOLO9000 更准、更快、更强
+
+YOLO v1对于bounding box的定位不是很好，在精度上比同类网络还有一定的差距。YOLO V2在V1基础上做出改进：
+
+- 受到Faster RCNN方法的启发，引入了anchor。使用了K-Means方法，对anchor数量进行了讨论。
+- 修改了网络结构，去掉了全连接层，改成了全卷积结构。
+- 训练时引入了世界树（WordTree）结构，将检测和分类问题做成了一个统一的框架，并且提出了一种层次性联合训练方法，将ImageNet分类数据集和COCO检测数据集同时对模型训练。
+
+**Batch Normalization**
+使用 Batch Normalization 对网络进行优化，让网络提高了收敛性，同时还消除了对其他形式的正则化（regularization）的依赖。通过对 YOLO 的每一个卷积层增加 Batch Normalization，最终使得 mAP 提高了 2%，同时还使模型正则化。使用 Batch Normalization 可以从模型中去掉 Dropout，而不会产生过拟合。
+
+**High resolution classifier**
+目前业界标准的检测方法，都要先把分类器（classiﬁer）放在ImageNet上进行预训练。从 Alexnet 开始，大多数的分类器都运行在小于 256*256 的图片上。而现在 YOLO 从 224*224 增加到了 448*448，这就意味着网络需要适应新的输入分辨率。
+
+为了适应新的分辨率，YOLO v2 的分类网络以 448*448 的分辨率先在 ImageNet上进行微调，微调 10 个 epochs，让网络有时间调整滤波器（filters），好让其能更好的运行在新分辨率上，还需要调优用于检测的 Resulting Network。最终通过使用高分辨率，mAP 提升了 4%。
+
+**Convolution with anchor boxes**
+YOLO 一代包含有全连接层，从而能直接预测 Bounding Boxes 的坐标值。  Faster R-CNN 的方法只用卷积层与 Region Proposal Network 来预测 Anchor Box 偏移值与置信度，而不是直接预测坐标值。作者发现通过预测偏移量而不是坐标值能够简化问题，让神经网络学习起来更容易。
+
+收缩网络让其运行在 416*416 而不是 448*448。由于图片中的物体都倾向于出现在图片的中心位置，特别是那种比较大的物体，所以有一个单独位于物体中心的位置用于预测这些物体。YOLO 的卷积层采用 32 这个值来下采样图片，所以通过选择 416*416 用作输入尺寸最终能输出一个 13*13 的特征图。 使用 Anchor Box 会让精确度稍微下降，但用了它能让 YOLO 能预测出大于一千个框，同时 recall 达到88%，mAP 达到 69.2%。
 
 
 

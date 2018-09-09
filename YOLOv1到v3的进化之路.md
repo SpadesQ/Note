@@ -14,14 +14,14 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 #### 2. YOLO 的实现方法
 
-![20180606164153997.png](/images/20180606164153997.png)
+<div align=center>!![20180606164153997.png](/images/20180606164153997.png)
 
 - 将一幅图像分成 SxS 个网格（grid cell），如果某个 object 的中心落在这个网格中，则这个网格就负责预测这个 object。
 
 - 每个网格要预测 B 个 bounding box，每个 bounding box 除了要回归自身的位置之外，还要附带预测一个 confidence 值。
 
 这个 confidence 代表了所预测的 box 中含有 object 的置信度和这个 box 预测的有多准这两重信息，其值是这样计算的： 
-![20180606164218784.png](/images/20180606164218784.png)
+<div align=center>!![20180606164218784.png](/images/20180606164218784.png)
 
 这个置信度并不只是该边界框是待检测目标的概率，而是该边界框是**待检测目标的概率乘上该边界框和真实位置的IoU**（框之间的交集除以并集）的积。通过乘上这个交并比，反映出该边界框预测位置的精度。
 
@@ -31,11 +31,11 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 网络结构：
 
-![20180606164310266.png](/images/20180606164310266.png)
+<div align=center>!![20180606164310266.png](/images/20180606164310266.png)
 
 在test的非极大值抑制阶段，每个网格预测的 class 信息和 bounding box 预测的 confidence信息相乘，就得到每个 bounding box 的 class-specific confidence score，即下式衡量该框是否应该予以保留。
 
-![20180606164339450.png](/images/20180606164339450.png)
+<div align=center>!![20180606164339450.png](/images/20180606164339450.png)
 
 
 

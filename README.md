@@ -1,9 +1,9 @@
 ## Content
 
-[TOC]
 ### Install
 
 [Install YOLO v3](https://github.com/SpadesQ/Note/blob/master/Install%20YOLO%20v3.md) 
+
 [Install opencv_3.3.1 for Linux](https://github.com/SpadesQ/Note/blob/master/%20Install%20opencv_3.3.1%20for%20Linux.md)
 
 ### Object Detection

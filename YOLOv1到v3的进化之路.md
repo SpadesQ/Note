@@ -135,11 +135,11 @@ WordTree中的根节点为"physical object"，每个节点的子节点都属于�
 - 更好的基础分类网络（类ResNet）和分类器 darknet-53
 - 分类器-类别预测：
 
-**多尺度预测**
+### 多尺度预测
 
 原来的YOLO v2有一个层叫：passthrough layer，假设最后提取的feature map的size是13*13，那么这个层的作用就是将前面一层的26*26的feature map和本层的13*13的feature map进行连接，有点像ResNet。这样的操作也是为了加强YOLO算法对小目标检测的精确度。这个思想在YOLO v3中得到了进一步加强，在YOLO v3中采用类似FPN的上采样（upsample）和融合做法（最后融合了3个scale，其他两个scale的大小分别是26*26和52*52），在多个scale的feature map上做检测，对于小目标的检测效果提升还是比较明显的。虽然在YOLO v3中每个网格预测3个边界框，看起来比YOLO v2中每个grid cell预测5个边界框要少，但因为YOLO v3采用了多个尺度的特征融合，所以边界框的数量要比之前多很多。
 
-**darknet-53**
+### darknet-53
 ![20180527230953899432.png](/images/20180527230953899432.png)
 
 ## References

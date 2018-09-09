@@ -15,7 +15,7 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 #### 2.YOLO 的实现方法
 
 
-![]({{site.baseurl}}/http://image.mamicode.com/info/201805/20180527230952473596.png)
+![](/http://image.mamicode.com/info/201805/20180527230952473596.png)
 
 将一幅图像分成 SxS 个网格（grid cell），如果某个 object 的中心落在这个网格中，则这个网格就负责预测这个 object。 每个网格要预测 B 个 bounding box，每个 bounding box 除了要回归自身的位置之外，还要附带预测一个 confidence 值。这个 confidence 代表了所预测的 box 中含有 object 的置信度和这个 box 预测的有多准这两重信息，其值是这样计算的： 
 ![](/https://img-blog.csdn.net/20180606164218784)

@@ -15,7 +15,7 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 ### 2. YOLO v1的实现方法
 
-![20180606164153997.png](/images/20180606164153997.png)
+<div align=center><img src="/images/20180606164153997.png"/></div>
 
 - 将一幅图像分成 SxS 个网格（grid cell），如果某个 object 的中心落在这个网格中，则这个网格就负责预测这个 object。
 - 每个网格要预测 B 个 bounding box，每个 bounding box 除了要回归自身的位置之外，还要附带预测一个 confidence 值。
@@ -146,5 +146,3 @@ WordTree中的根节点为"physical object"，每个节点的子节点都属于�
 
 http://www.mamicode.com/info-detail-2314392.html  
 http://dwz.cn/7ZGrif
-
-

@@ -32,7 +32,7 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 网络结构：
 
-<div align=center><img src="/images/20180606164310266.png"/></div>\
+<div align=center><img src="/images/20180606164310266.png"/></div>
 
 在test的非极大值抑制阶段，每个网格预测的 class 信息和 bounding box 预测的 confidence信息相乘，就得到每个 bounding box 的 class-specific confidence score，即下式衡量该框是否应该予以保留。
 

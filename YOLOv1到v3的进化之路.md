@@ -70,8 +70,6 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 <div align=center><img src="/images/Screenshot from 2018-09-10 16-28-24.png"/></div>
 
-<div align=center><img src="/images/Screenshot%20from%202018-09-10%2016-28-24.png"/></div>
-
 非极大值抑制：
 <div align=center><img src="/images/Screenshot from 2018-09-10 16-30-51.png"/></div>
 <div align=center><img src="/images/Screenshot from 2018-09-10 16-31-09.png"/></div>

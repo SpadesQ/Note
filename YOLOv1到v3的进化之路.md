@@ -58,15 +58,15 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 举例说明: 在 PASCAL VOC 中，图像输入为 448x448，取 S=7，B=2，一共有20 个类别（C=20），则输出就是 S x S x (5*B+C) = 7x7x30 的一个 tensor。
 
-![Screenshot from 2018-09-10 16-10-22.png](/images/Screenshot from 2018-09-10 16-10-22.png)
+<div align=center><img src="/images/Screenshot from 2018-09-10 16-10-22.png"/></div>
 
 每一个栅格还要预测C个 conditional class probability（条件类别概率）：Pr(Classi|Object)。即在一个栅格包含一个Object的前提下，它属于某个类的概率。我们只为每个栅格预测一组（C个）类概率，而不考虑框B的数量。**注意：conditional class probability信息是针对每个网格的。confidence信息是针对每个bounding box的。**
 
-![20170420214004907.jpeg](/images/20170420214004907.jpeg)
+<div align=center><img src="/images/20170420214004907.jpeg"/></div>
 
 每个栅格的conditional class probabilities与每个 bounding box的 confidence相乘:
 
-![Screenshot from 2018-09-10 16-16-19.png](/images/Screenshot from 2018-09-10 16-16-19.png)
+<div align=center><img src="/images/Screenshot from 2018-09-10 16-16-19.png"/></div>
 
 **网络结构：**
 

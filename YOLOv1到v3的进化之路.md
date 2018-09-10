@@ -50,6 +50,8 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 举例说明: 在 PASCAL VOC 中，图像输入为 448x448，取 S=7，B=2，一共有20 个类别（C=20），则输出就是 S x S x (5*B+C) = 7x7x30 的一个 tensor。
 
+![20170420214347813.gif]({{site.baseurl}}/images/20170420214347813.gif)
+
 网络结构：
 
 <div align=center><img src="/images/20180606164310266.png"/></div>

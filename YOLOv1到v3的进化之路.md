@@ -68,6 +68,9 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 <div align=center><img src="/images/Screenshot from 2018-09-10 16-16-19.png"/></div>
 
+![Screenshot from 2018-09-10 16-28-24.png](/images/Screenshot from 2018-09-10 16-28-24.png)
+
+
 **网络结构：**
 
 <div align=center><img src="/images/20180606164310266.png"/></div>

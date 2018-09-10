@@ -46,15 +46,7 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 这个置信度并不只是该边界框是待检测目标的概率，而是该边界框是**待检测目标的概率乘上该边界框和真实位置的[IOU](https://blog.csdn.net/hysteric314/article/details/54093734)**（框之间的交集除以并集）的积。通过乘上这个交并比，反映出该边界框预测位置的精度。
 
-每个边界框对应于5个输出，分别是x，y，w，h和置信度。其中x，y代表边界框的中心离开其所在网格单元格边界的偏移。w，h代表边界框真实宽高相对于整幅图像的比例。x，y，w，h这几个参数都已经被限制到了区间[0,1]上。除此以外，每个单元格还产生C( categories)个条件概率。
-
-举例说明: 在 PASCAL VOC 中，图像输入为 448x448，取 S=7，B=2，一共有20 个类别（C=20），则输出就是 S x S x (5*B+C) = 7x7x30 的一个 tensor。
-
-![20170420214347813.gif]({{site.baseurl}}/images/20170420214347813.gif)
-
-网络结构：
-
-<div align=center><img src="/images/20180606164310266.png"/></div>
+每个边界框对应于5个输出，分别是x，y，w，h和置信度。其中x，y代表边界框的中心离开其所在网格单元格边界的偏移。w，h代表边界框真实宽高相对于整幅图像的比例。x，y，w，h这几个参数都已经被限制到了区间[0,1]上。除此以外，**每个单元格还产生C( categories)个条件概率**。
 
 在test的**非极大值抑制**阶段，每个网格预测的 class 信息和 bounding box 预测的 confidence信息相乘，就得到每个 bounding box 的 class-specific confidence score，即下式衡量该框是否应该予以保留。
 
@@ -63,6 +55,18 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 这里再介绍一下非极大值抑制算法（non maximum suppression, NMS），这个算法不单单是针对Yolo算法的，而是所有的检测算法中都会用到。NMS算法主要解决的是一个目标被多次检测的问题，如下图中人脸检测，可以看到人脸被多次检测，但是其实我们希望最后仅仅输出其中一个最好的预测框，比如对于美女，只想要红色那个检测结果。那么可以采用NMS算法来实现这样的效果：首先从所有的检测框中找到置信度最大的那个框，然后挨个计算其与剩余框的IOU，如果其值大于一定阈值（重合度过高），那么就将该框剔除；然后对剩余的检测框重复上述过程，直到处理完所有的检测框。Yolo预测过程也需要用到NMS算法。
 
 <div align=center><img src="/images/Screenshot from 2018-09-10 15-57-58.png"/></div>
+
+举例说明: 在 PASCAL VOC 中，图像输入为 448x448，取 S=7，B=2，一共有20 个类别（C=20），则输出就是 S x S x (5*B+C) = 7x7x30 的一个 tensor。
+
+![Screenshot from 2018-09-10 16-10-22.png]({{site.baseurl}}/images/Screenshot from 2018-09-10 16-10-22.png)
+
+每一个栅格还要预测C个 conditional class probability（条件类别概率）：Pr(Classi|Object)。即在一个栅格包含一个Object的前提下，它属于某个类的概率。我们只为每个栅格预测一组（C个）类概率，而不考虑框B的数量。**注意：conditional class probability信息是针对每个网格的。confidence信息是针对每个bounding box的。**
+
+![20170420214004907.jpeg]({{site.baseurl}}/images/20170420214004907.jpeg)
+
+**网络结构：**
+
+<div align=center><img src="/images/20180606164310266.png"/></div>
 
 ### 3. YOLO v1的损失函数
 

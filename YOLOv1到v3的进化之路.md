@@ -68,18 +68,16 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 <div align=center><img src="/images/Screenshot from 2018-09-10 16-16-19.png"/></div>
 
-![Screenshot from 2018-09-10 16-28-24.png](/images/Screenshot from 2018-09-10 16-28-24.png)
+<div align=center><img src="/images/Screenshot from 2018-09-10 16-28-24.png"/></div>
 
-![](/images/Screenshot%20from%202018-09-10%2016-28-24.png)
+<div align=center><img src="/images/Screenshot%20from%202018-09-10%2016-28-24.png"/></div>
 
 非极大值抑制：
-
-![Screenshot from 2018-09-10 16-30-51.png]({{site.baseurl}}/images/Screenshot from 2018-09-10 16-30-51.png)
-![Screenshot from 2018-09-10 16-31-09.png]({{site.baseurl}}/images/Screenshot from 2018-09-10 16-31-09.png)
+<div align=center><img src="/images/Screenshot from 2018-09-10 16-30-51.png"/></div>
+<div align=center><img src="/images/Screenshot from 2018-09-10 16-31-09.png"/></div>
 
 输出
-
-![Screenshot from 2018-09-10 16-33-25.png]({{site.baseurl}}/images/Screenshot from 2018-09-10 16-33-25.png)
+<div align=center><img src="/images/Screenshot from 2018-09-10 16-33-25.png"/></div>
 
 **网络结构：**
 

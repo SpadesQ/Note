@@ -56,9 +56,13 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 <div align=center><img src="/images/20180606164310266.png"/></div>
 
-在test的非极大值抑制阶段，每个网格预测的 class 信息和 bounding box 预测的 confidence信息相乘，就得到每个 bounding box 的 class-specific confidence score，即下式衡量该框是否应该予以保留。
+在test的**非极大值抑制**阶段，每个网格预测的 class 信息和 bounding box 预测的 confidence信息相乘，就得到每个 bounding box 的 class-specific confidence score，即下式衡量该框是否应该予以保留。
 
 <div align=center><img src="/images/20180606164339450.png"/></div>
+
+这里再介绍一下非极大值抑制算法（non maximum suppression, NMS），这个算法不单单是针对Yolo算法的，而是所有的检测算法中都会用到。NMS算法主要解决的是一个目标被多次检测的问题，如下图中人脸检测，可以看到人脸被多次检测，但是其实我们希望最后仅仅输出其中一个最好的预测框，比如对于美女，只想要红色那个检测结果。那么可以采用NMS算法来实现这样的效果：首先从所有的检测框中找到置信度最大的那个框，然后挨个计算其与剩余框的IOU，如果其值大于一定阈值（重合度过高），那么就将该框剔除；然后对剩余的检测框重复上述过程，直到处理完所有的检测框。Yolo预测过程也需要用到NMS算法。
+
+![Screenshot from 2018-09-10 15-57-58.png](/images/Screenshot from 2018-09-10 15-57-58.png)
 
 ### 3. YOLO v1的损失函数
 

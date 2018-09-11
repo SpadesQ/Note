@@ -81,7 +81,7 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 <div align=center><img src="/images/20180606164310266.png"/></div>
 
-**Bounding Box Normalization**
+**Bounding Box Normalization:**
 
 YOLO在实现中有一个重要细节，即对bounding box的坐标(x, y, w, h)进行了normalization，以便进行回归。作者认为这是一个非常重要的细节。在原文2.2 Traing节中有如下一段：
 

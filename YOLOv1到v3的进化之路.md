@@ -46,7 +46,7 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 这个置信度并不只是该边界框是待检测目标的概率，而是该边界框是**待检测目标的概率乘上该边界框和真实位置的[IOU](https://blog.csdn.net/hysteric314/article/details/54093734)**（框之间的交集除以并集）的积。通过乘上这个交并比，反映出该边界框预测位置的精度。
 
-每个边界框对应于5个输出，分别是x，y，w，h和置信度。其中x，y代表边界框的中心离开其所在网格单元格边界的偏移。w，h代表边界框真实宽高相对于整幅图像的比例。x，y，w，h这几个参数都已经被限制到了区间[0,1]上。除此以外，**每个单元格还产生C( categories)个条件概率**。
+每个边界框对应于5个输出，分别是x，y，w，h和置信度。其中x，y代表边界框的中心离开其所在网格单元格边界的偏移。w，h代表边界框真实宽高相对于整幅图像的比例。**x，y，w，h这几个参数都已经被限制到了区间[0,1]上。**除此以外，**每个单元格还产生C( categories)个条件概率**。
 
 在test的**非极大值抑制**阶段，每个网格预测的 class 信息和 bounding box 预测的 confidence信息相乘，就得到每个 bounding box 的 class-specific confidence score，即下式衡量该框是否应该予以保留。
 
@@ -81,6 +81,21 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 
 <div align=center><img src="/images/20180606164310266.png"/></div>
 
+**Bounding Box Normalization**
+YOLO在实现中有一个重要细节，即对bounding box的坐标(x, y, w, h)进行了normalization，以便进行回归。作者认为这是一个非常重要的细节。在原文2.2 Traing节中有如下一段：
+
+> Our final layer predicts both class probabilities and bounding box coordinates.We normalize the bounding box width and height by the image width and height so that they fall between 0 and 1.We parametrize the bounding box x and y coordinates to be offsets of a particular grid cell location so they are also bounded between 0 and 1.
+
+<div align=center><img src="https://img-blog.csdn.net/20170603134214525"/>
+  <p>SxS网格与bounding box关系（图中S=7，row=4且col=1）</p></div>
+  
+在YOLO中输入图像被分为SxS网格。假设有一个bounding box(如上图红框），其中心刚好落在了(row,col)网格中，则这个网格需要负责预测整个红框中的dog目标。假设图像的宽为width_image，高为height_image；红框中心在(xc，yc)，宽为width_box，高为height_box那么：
+
+(1) 对于bounding box的宽和高做如下normalization，使得输出宽高介于0~1：
+
+<div align=center><img src="https://img-blog.csdn.net/20170605002831961"/>
+  
+  
 ### 3. YOLO v1的损失函数
 
 YOLO v1全部使用了均方差（mean squared error）作为损失（loss）函数。由三部分组成：坐标误差、IOU误差和分类误差。

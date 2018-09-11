@@ -171,6 +171,7 @@ Anchor boxes的宽高维度往往是精选的先验框（hand-picked priors）�
 <div align=center><img src="/images/20161229113738852.png"/></div>
 作者应该是把加号写成了减号。理由如下，anchor的预测公式来自于Faster-RCNN：
 <div align=center><img src="/images/20170417171727693.png"/></div>
+
 公式中，符号的含义解释一下：x 是坐标预测值，xa 是anchor坐标（预设固定值），x∗ 是坐标真实值（标注信息），其他变量 y，w，h 以此类推，t 变量是偏移量。变形后是加号。
 
 上上面公式的理解为：当预测 tx=1，就会把box向右边移动一定距离（具体为anchor box的宽度），预测 tx=−1，就会把box向左边移动相同的距离。因此每个位置预测的边界框可以落在图片任何位置，这导致模型的不稳定性，在训练时需要很长时间来预测出正确的offsets。

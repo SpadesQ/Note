@@ -97,9 +97,8 @@ YOLO在实现中有一个重要细节，即对bounding box的坐标(x, y, w, h)�
 <div align=center><img src="/images/20170605002831961.jpeg"/></div>
 
 (2) 使用(row, col)网格的offset归一化bounding box的中心坐标：
-![20170603134345672.jpeg](/images/20170603134345672.jpeg)
 
-<div align=center><img src="/images/20170605002831961.jpeg"/></div>
+<div align=center><img src="/images/20170603134345672.jpeg"/></div>
   
 经过上述公式得到的normalization的(x, y, w, h)，再加之前提到的confidence，共同组成了一个真正在网络中用于回归的bounding box；而当网络在Test阶段(x, y, w, h)经过反向解码又可得到目标在图像坐标系的框，解码代码在darknet detection_layer.c中的get_detection_boxes()函数，关键部分如下：
 ```

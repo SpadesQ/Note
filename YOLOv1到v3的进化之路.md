@@ -97,6 +97,7 @@ YOLO在实现中有一个重要细节，即对bounding box的坐标(x, y, w, h)�
 <div align=center><img src="/images/20170605002831961.jpeg"/></div>
 
 (2) 使用(row, col)网格的offset归一化bounding box的中心坐标：
+![20170603134345672.jpeg](/images/20170603134345672.jpeg)
 
 <div align=center><img src="/images/20170605002831961.jpeg"/></div>
   
@@ -167,7 +168,9 @@ Anchor boxes的宽高维度往往是精选的先验框（hand-picked priors）�
 
 **Direct location prediction**
 
-用 Anchor Box 的方法，会让 model 变得不稳定，尤其是在最开始的几次迭代的时候。大多数不稳定因素产生自预测 Box 的（x,y）位置的时候。按照之前 YOLO的方法，网络不会预测偏移量，而是根据 YOLO 中的网格单元的位置来预测坐标，这就让 Ground Truth 的值介于 0 到 1 之间。而为了让网络的结果能落在这一范围内，网络使用一个 Logistic Activation 来对于网络预测结果进行限制，让结果介于 0 到 1 之间。 网络在每一个网格单元中预测出 5 个 Bounding Boxes，每个 Bounding Boxes 有五个坐标值 tx，ty，tw，th，t0，他们的关系见下图（Figure3）。假设一个网格单元对于图片左上角的偏移量是 cx、cy，Bounding Boxes Prior 的宽度和高度是 pw、ph，那么预测的结果见下图右面的公式： 
+用 Anchor Box 的方法，会让 model 变得不稳定，尤其是在最开始的几次迭代的时候。大多数不稳定因素产生自预测 Box 的（x,y）位置的时候。按照之前 YOLO的方法，网络不会预测偏移量，而是根据 YOLO 中的网格单元的位置来预测坐标，这就让 Ground Truth 的值介于 0 到 1 之间。在区域建议网络中，预测 (x,y) 以及 tx，ty 使用的是如下公式：
+
+而为了让网络的结果能落在这一范围内，网络使用一个 Logistic Activation 来对于网络预测结果进行限制，让结果介于 0 到 1 之间。 网络在每一个网格单元中预测出 5 个 Bounding Boxes，每个 Bounding Boxes 有五个坐标值 tx，ty，tw，th，t0，他们的关系见下图（Figure3）。假设一个网格单元对于图片左上角的偏移量是 cx、cy，Bounding Boxes Prior 的宽度和高度是 pw、ph，那么预测的结果见下图右面的公式： 
 
 <div align=center><img src="/images/20180606164911315.png"/></div>
 

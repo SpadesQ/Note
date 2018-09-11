@@ -82,9 +82,12 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 <div align=center><img src="/images/20180606164310266.png"/></div>
 
 **Bounding Box Normalization**
+
 YOLO在实现中有一个重要细节，即对bounding box的坐标(x, y, w, h)进行了normalization，以便进行回归。作者认为这是一个非常重要的细节。在原文2.2 Traing节中有如下一段：
 
 > Our final layer predicts both class probabilities and bounding box coordinates.We normalize the bounding box width and height by the image width and height so that they fall between 0 and 1.We parametrize the bounding box x and y coordinates to be offsets of a particular grid cell location so they are also bounded between 0 and 1.
+
+![20170603134214525.jpeg]({{site.baseurl}}/images/20170603134214525.jpeg)
 
 <div align=center><img src="https://img-blog.csdn.net/20170603134214525"/>
   <p>SxS网格与bounding box关系（图中S=7，row=4且col=1）</p></div>
@@ -93,9 +96,23 @@ YOLO在实现中有一个重要细节，即对bounding box的坐标(x, y, w, h)�
 
 (1) 对于bounding box的宽和高做如下normalization，使得输出宽高介于0~1：
 
+![20170605002831961.jpeg]({{site.baseurl}}/images/20170605002831961.jpeg)
+
 <div align=center><img src="https://img-blog.csdn.net/20170605002831961"/>
-  
-  
+
+(2) 使用(row, col)网格的offset归一化bounding box的中心坐标：
+
+![20170605002831961.jpeg]({{site.baseurl}}/images/20170605002831961.jpeg)
+
+经过上述公式得到的normalization的(x, y, w, h)，再加之前提到的confidence，共同组成了一个真正在网络中用于回归的bounding box；而当网络在Test阶段(x, y, w, h)经过反向解码又可得到目标在图像坐标系的框，解码代码在darknet detection_layer.c中的get_detection_boxes()函数，关键部分如下：
+```
+    boxes[index].x = (predictions[box_index + 0] + col) / l.side * w;    
+    boxes[index].y = (predictions[box_index + 1] + row) / l.side * h;    
+    boxes[index].w = pow(predictions[box_index + 2], (l.sqrt?2:1)) * w;    
+    boxes[index].h = pow(predictions[box_index + 3], (l.sqrt?2:1)) * h;    
+```
+而w和h就是图像宽高，l.side是上文中提到的S。 
+
 ### 3. YOLO v1的损失函数
 
 YOLO v1全部使用了均方差（mean squared error）作为损失（loss）函数。由三部分组成：坐标误差、IOU误差和分类误差。

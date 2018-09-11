@@ -151,9 +151,11 @@ YOLO v1对于bounding box的定位不是很好，在精度上比同类网络还�
 
 **Convolution with anchor boxes**
 
-YOLO 一代包含有全连接层，从而能直接预测 Bounding Boxes 的坐标值。  Faster R-CNN 的方法只用卷积层与 Region Proposal Network 来预测 Anchor Box 偏移值与置信度，而不是直接预测坐标值。作者发现通过预测偏移量而不是坐标值能够简化问题，让神经网络学习起来更容易。
+YOLO(v1)使用全连接层数据进行bounding box预测（将全连接层转换为S*S*(B*5+20)维的特征），这会丢失较多的空间信息，导致定位不准。 
 
-收缩网络让其运行在 416*416 而不是 448*448。由于图片中的物体都倾向于出现在图片的中心位置，特别是那种比较大的物体，所以有一个单独位于物体中心的位置用于预测这些物体。YOLO 的卷积层采用 32 这个值来下采样图片，所以通过选择 416*416 用作输入尺寸最终能输出一个 13*13 的特征图。 使用 Anchor Box 会让精确度稍微下降，但用了它能让 YOLO 能预测出大于一千个框，同时 recall 达到88%，mAP 达到 69.2%。
+YOLOv2借鉴了Faster R-CNN中的anchor思想： 简单理解为卷积特征图上进行滑窗采样，每个中心预测9种不同大小和比例的建议框。由于都是卷积不需要reshape，很好的保留了空间信息，最终特征图的每个特征点和原图的每个cell一一对应。而且用预测相对偏移（offset）取代直接预测坐标简化了问题，方便网络学习。总的来说就是移除全连接层（以获得更多空间信息）使用 anchor boxes去预测 bounding boxes。并且，YOLOv2将预测类别的机制从空间位置(cell)中解耦，由anchor box同时预测类别和坐标(YOLO是由每个cell来负责预测类别，每个cell对应的2个bounding负责预测坐标)。
+
+![gqYMaEH.png](/images/gqYMaEH.png)
 
 **Dimension clusters**
 

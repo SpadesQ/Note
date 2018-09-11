@@ -94,7 +94,7 @@ YOLO在实现中有一个重要细节，即对bounding box的坐标(x, y, w, h)�
 
 (1) 对于bounding box的宽和高做如下normalization，使得输出宽高介于0~1：
 
-<div align=center><img src="/images/20170605002831961.jpeg"/>
+<div align=center><img src="/images/20170605002831961.jpeg"/></div>
 
 (2) 使用(row, col)网格的offset归一化bounding box的中心坐标：
 

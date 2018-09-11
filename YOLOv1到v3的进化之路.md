@@ -157,6 +157,13 @@ YOLOv2借鉴了Faster R-CNN中的anchor思想： 简单理解为卷积特征图�
 
 ![gqYMaEH.png](/images/gqYMaEH.png)
 
+关于Faster R-CNN中的anchor：
+![20180214224221964.png](/images/20180214224221964.png)
+
+其实featuremap对于anchorbox的生成的贡献就是提供了一个中心点而已，featuremap每个位置上的点，就对应一个anchorbox的中心，然后呢，知道了这么多中心点，根据base size，scales，aspect ratios就可以算出来一个矩形的长和宽。矩形的中心点就是featuremap上的那个点对应原图上的点。
+
+这个矩形的长和宽的计算很好理解，但是怎么得到featuremap的点对应原图（这里原图指的是resize之后的图，后面也都这么说，因为是resize之后的图参与计算，得到的location信息是图上的相对比例的坐标，所以不用真正的原图也没关系）上是哪个点呢？原图过了网络之后，大概缩放比例就是(?)倍,有一个stride参数，也就是把featuremap的坐标平移一下（乘?）就得到相对于原图的坐标了。
+
 **Dimension clusters**
 
 Anchor boxes的宽高维度往往是精选的先验框（hand-picked priors）也就是说人工选定的先验框。虽然在训练过程中网络也会学习调整框的宽高维度，最终得到准确的bounding boxes。但是，如果一开始就选择了更好的、更有代表性的先验框维度，那么网络就更容易学到准确的预测位置。为了优化，在训练集的 Bounding Boxes 上跑一下 k-means聚类，来找到一个比较好的值。

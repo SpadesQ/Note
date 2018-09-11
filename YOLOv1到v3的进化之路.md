@@ -87,23 +87,19 @@ YOLO在实现中有一个重要细节，即对bounding box的坐标(x, y, w, h)�
 
 > Our final layer predicts both class probabilities and bounding box coordinates.We normalize the bounding box width and height by the image width and height so that they fall between 0 and 1.We parametrize the bounding box x and y coordinates to be offsets of a particular grid cell location so they are also bounded between 0 and 1.
 
-![20170603134214525.jpeg]({{site.baseurl}}/images/20170603134214525.jpeg)
-
-<div align=center><img src="https://img-blog.csdn.net/20170603134214525"/>
+<div align=center><img src="/images/20170603134214525.jpeg"/>
   <p>SxS网格与bounding box关系（图中S=7，row=4且col=1）</p></div>
   
 在YOLO中输入图像被分为SxS网格。假设有一个bounding box(如上图红框），其中心刚好落在了(row,col)网格中，则这个网格需要负责预测整个红框中的dog目标。假设图像的宽为width_image，高为height_image；红框中心在(xc，yc)，宽为width_box，高为height_box那么：
 
 (1) 对于bounding box的宽和高做如下normalization，使得输出宽高介于0~1：
 
-![20170605002831961.jpeg]({{site.baseurl}}/images/20170605002831961.jpeg)
-
-<div align=center><img src="https://img-blog.csdn.net/20170605002831961"/>
+<div align=center><img src="/images/20170605002831961.jpeg"/>
 
 (2) 使用(row, col)网格的offset归一化bounding box的中心坐标：
 
-![20170605002831961.jpeg]({{site.baseurl}}/images/20170605002831961.jpeg)
-
+<div align=center><img src="/images/20170605002831961.jpeg"/>
+  
 经过上述公式得到的normalization的(x, y, w, h)，再加之前提到的confidence，共同组成了一个真正在网络中用于回归的bounding box；而当网络在Test阶段(x, y, w, h)经过反向解码又可得到目标在图像坐标系的框，解码代码在darknet detection_layer.c中的get_detection_boxes()函数，关键部分如下：
 ```
     boxes[index].x = (predictions[box_index + 0] + col) / l.side * w;    

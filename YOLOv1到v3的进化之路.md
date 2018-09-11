@@ -74,7 +74,7 @@ YOLO 的核心思想就是利用整张图作为网络的输入，直接在输出
 <div align=center><img src="/images/Screenshot from 2018-09-10 16-30-51.png"/></div>
 <div align=center><img src="/images/Screenshot from 2018-09-10 16-31-09.png"/></div>
 
-输出
+输出:
 <div align=center><img src="/images/Screenshot from 2018-09-10 16-33-25.png"/></div>
 
 **网络结构：**
@@ -169,9 +169,21 @@ Anchor boxes的宽高维度往往是精选的先验框（hand-picked priors）�
 
 用 Anchor Box 的方法，会让 model 变得不稳定，尤其是在最开始的几次迭代的时候。大多数不稳定因素产生自预测 Box 的（x,y）位置的时候。按照之前 YOLO的方法，网络不会预测偏移量，而是根据 YOLO 中的网格单元的位置来预测坐标，这就让 Ground Truth 的值介于 0 到 1 之间。在区域建议网络中，预测 (x,y) 以及 tx，ty 使用的是如下公式：
 
-而为了让网络的结果能落在这一范围内，网络使用一个 Logistic Activation 来对于网络预测结果进行限制，让结果介于 0 到 1 之间。 网络在每一个网格单元中预测出 5 个 Bounding Boxes，每个 Bounding Boxes 有五个坐标值 tx，ty，tw，th，t0，他们的关系见下图（Figure3）。假设一个网格单元对于图片左上角的偏移量是 cx、cy，Bounding Boxes Prior 的宽度和高度是 pw、ph，那么预测的结果见下图右面的公式： 
+![20161229113738852.png](/images/20161229113738852.png)
+
+作者应该是把加号写成了减号。理由如下，anchor的预测公式来自于Faster-RCNN：
+![20170417171727693.png](/images/20170417171727693.png)
+公式中，符号的含义解释一下：x 是坐标预测值，xa 是anchor坐标（预设固定值），x∗ 是坐标真实值（标注信息），其他变量 y，w，h 以此类推，t 变量是偏移量。变形后是加号。
+
+上上面公式的理解为：当预测 tx=1，就会把box向右边移动一定距离（具体为anchor box的宽度），预测 tx=−1，就会把box向左边移动相同的距离。因此每个位置预测的边界框可以落在图片任何位置，这导致模型的不稳定性，在训练时需要很长时间来预测出正确的offsets。
+
+所以，YOLOv2弃用了这种预测方式，而是沿用YOLOv1的方法，就是预测边界框中心点相对于对应cell左上角位置的相对偏移值，为了将边界框中心点约束在当前cell中，使用sigmoid函数处理偏移值，这样预测的偏移值在(0,1)范围内（每个cell的尺度看做1）。
+
+网络在每一个网格单元中预测出 5 个 Bounding Boxes，每个 Bounding Boxes 有五个坐标值 tx，ty，tw，th，t0，他们的关系见下图（Figure3）。假设一个网格单元对于图片左上角的偏移量是 cx、cy，Bounding Boxes Prior 的宽度和高度是 pw、ph，那么预测的结果见下图右面的公式： 
 
 <div align=center><img src="/images/20180606164911315.png"/></div>
+
+这几个公式参考上面Faster-RCNN和YOLOv1的公式以及下图就比较容易理解。tx,ty 经sigmod函数处理过，取值限定在了0~1，实际意义就是使anchor只负责周围的box，有利于提升效率和网络收敛。σ 函数的意义没有给，但估计是把归一化值转化为图中真实值，使用 e 的幂函数是因为前面做了 ln 计算，因此，σ(tx)是bounding box的中心相对栅格左上角的横坐标，σ(ty)是纵坐标，σ(to)是bounding box的confidence score。
 
 **Fine-Grained Features**
 

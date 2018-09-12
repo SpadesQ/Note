@@ -28,3 +28,16 @@ cmake -D CMAKEBUILDTYPE=RELEASE -D CMAKEINSTALLPREFIX=/usr/local ..
 make
 make install
 ```
+### Note
+
+Find the folder containing the shared library libopencv_core.so.3.3 using the following command line.
+
+sudo find / -name "libopencv_core.so.3.3*"
+
+Then I got the result: /usr/local/lib/libopencv_core.so.3.3.
+2. Create a file called /etc/ld.so.conf.d/opencv.conf and write to it the path to the folder where the binary is stored.For example, I wrote /usr/local/lib/ to my opencv.conf file.
+3. Run the command line as follows.
+
+sudo ldconfig -v
+
+Try to run the test binary again.

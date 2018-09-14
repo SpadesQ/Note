@@ -53,7 +53,7 @@ Finally, an attacker will print out the optimization result on paper, cut out th
 
 ## 论文的实验
 
-数据集：LISA, a U.S. traffic sign dataset containing 47 different road signs
+数据集：LISA, a U.S. traffic sign dataset containing 47 different road signs，论文用17种训练
 
 分类器：LISA-CNN(consists of three convolutional layers and an FC layer 3卷积层1全连接层很简单的分类器)and GTSRB-CNN
 

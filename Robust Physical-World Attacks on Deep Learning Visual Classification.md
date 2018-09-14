@@ -30,7 +30,7 @@ To ensure that the perturbations are only applied to the surface area of the tar
 
 所以shape the mask to look like graffiti（mask看起来像涂鸦）。Formally, the perturbation mask is a matrix Mx whose dimensions are the same as the size of input to the road sign classifier.(mask是矩阵Mx，其尺寸与道路标志分类器的输入尺寸相同。)Mx contains zeroes in regions where no perturbation is added, and ones in regions where the perturbation is added during optimization.
 
-<div align=center><img src="/images/Screenshot from 2018-09-13 20-43-45.png"/></div>
+<div align=center><img src="/images/Screenshot from 2018-09-13 20-33-59.png"/></div>
 
 > With a perturbation in the form of only **black and white stickers**,we attack a real **stop** sign, causing targeted misclassification in **100% of the images obtained in lab settings**, and in **84.8% of the captured video frames obtained on a moving vehicle (field test)** for the target classifier.
 

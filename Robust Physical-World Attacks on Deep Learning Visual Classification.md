@@ -22,6 +22,16 @@ Here J(·,·) is the loss function, which measures the difference between the mo
 
 这个公式的意思是一方面δ要小，另一方面扰动δ还要确保能分类错误。
 
+好，接下来考虑那四个挑战。
+
+We model the distribution of images containing object o under **both physical and digital transformations**X, 意思是包含实际的物理条件变化（包括changing distances, angles, and lightning）以及数字变换（包括change the brightness, and add spatial transformations）, 从这个分布采样xi。 过去的研究都只有数字变换对于本论文是不够的。
+
+To ensure that the perturbations are only applied to the surface area of the target object o(considering the spatial constraints and physical limits on imperceptibility), we introduce a mask.（别把小广告贴外面了，另外人还得能看见小广告，但是还不能让人认不出"stop"）
+
+所以shape the mask to look like graffiti（mask看起来像涂鸦）。Formally, the perturbation mask is a matrix Mx whose dimensions are the same as the size of input to the road sign classifier.(mask是矩阵Mx，其尺寸与道路标志分类器的输入尺寸相同。)Mx contains zeroes in regions where no perturbation is added, and ones in regions where the perturbation is added during optimization.
+
+<div align=center><img src="/images/Screenshot from 2018-09-13 20-43-45.png"/></div>
+
 > With a perturbation in the form of only **black and white stickers**,we attack a real **stop** sign, causing targeted misclassification in **100% of the images obtained in lab settings**, and in **84.8% of the captured video frames obtained on a moving vehicle (field test)** for the target classifier.
 
 

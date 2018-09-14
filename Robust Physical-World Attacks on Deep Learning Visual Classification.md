@@ -20,6 +20,8 @@
 
 Here J(·,·) is the loss function, which measures the difference between the model’s prediction and the target label y∗ . λ is a hyper-parameter that controls the regularization of the distortion. We specify the distance function H as ||δ||p ,denoting the lp norm of δ.
 
+这个公式的意思是一方面δ要小，另一方面扰动δ还要确保能分类错误。
+
 > With a perturbation in the form of only **black and white stickers**,we attack a real **stop** sign, causing targeted misclassification in **100% of the images obtained in lab settings**, and in **84.8% of the captured video frames obtained on a moving vehicle (field test)** for the target classifier.
 
 

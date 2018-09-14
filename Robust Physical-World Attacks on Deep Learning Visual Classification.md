@@ -61,7 +61,7 @@ Finally, an attacker will print out the optimization result on paper, cut out th
 
 Stationary (Lab) Tests很简单，直接贴小广告，看攻击分类器的成功率。
 
-![22777.png](/images/22777.png)
+<div align=center><img src="/images/22777.png"/></div>
 
 ![22888.png](/images/22888.png)
 

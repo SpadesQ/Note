@@ -71,7 +71,7 @@ Drive-By Testing.计算攻击成功率公式不变, 车速between 0 mph and20 mp
 
 ![22000.png](/images/22000.png)
 
-To show the generality of our approach, we generate the robust physical adversarial example by manipulating general physical objects, such as a microwave. We show that the **pre-trained Inception-v3**classifier misclassifies the microwave as “phone" by adding a single sticker.
+To show the generality of our approach, we generate the robust physical adversarial example by manipulating general physical objects, such as a microwave. We show that the **pre-trained Inception-v3**classifier **misclassifies the microwave as “phone"** by adding a single sticker.
 
 ## Q & A
 

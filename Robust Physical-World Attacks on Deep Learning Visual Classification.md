@@ -1,9 +1,9 @@
 
-## Some quenstions
+## Q & A
 
 1.怎么保证 δ 就是 黑白方块
 
-<div align=center><img src="/images/Screenshot from 2018-09-13 20-33-59.png"/></div>
+<div align=center><img src="/images/Screenshot from 2018-09-13 20-33-59.png"style="width:50%"/></div>
 
 <div align=center><img src="/images/Screenshot from 2018-09-13 20-37-14.png"/></div>
 

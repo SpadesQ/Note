@@ -44,9 +44,26 @@ triples used in the perturbation that need to be printed out in physical world, 
 <div align=center><img src="/images/22555.png"/></div>
 
 最终优化式子：
+
 <div align=center><img src="/images/22666.png"/></div>
 
-> With a perturbation in the form of only **black and white stickers**,we attack a real **stop** sign, causing targeted misclassification in **100% of the images obtained in lab settings**, and in **84.8% of the captured video frames obtained on a moving vehicle (field test)** for the target classifier.
+**Ti (·)** to denote the alignment function that maps transformations on the object to transformations on the perturbation (e.g.**if the object is rotated, the perturbation is rotated as well**).
+
+Finally, an attacker will print out the optimization result on paper, cut out the perturbation (Mx), and put it onto the target object o.（小广告裁剪下来贴到路牌上=。=）
+
+## 论文的实验
+
+数据集：LISA, a U.S. traffic sign dataset containing 47 different road signs
+
+分类器：LISA-CNN(consists of three convolutional layers and an FC layer 3卷积层1全连接层很简单的分类器)and GTSRB-CNN
+
+实验分两部分Stationary (Lab) Tests和Drive-By (Field) Tests. With a perturbation in the form of only **black and white stickers**,we attack a real **stop** sign, causing targeted misclassification in **100% of the images obtained in lab settings**, and in **84.8% of the captured video frames obtained on a moving vehicle (field test)** for the target classifier.
+
+Stationary (Lab) Tests很简单，直接贴小广告，看攻击分类器的成功率。
+
+![22777.png](/images/22777.png)
+
+![22888.png](/images/22888.png)
 
 
 

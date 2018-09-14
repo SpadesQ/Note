@@ -63,6 +63,8 @@ Stationary (Lab) Tests很简单，直接贴小广告，看攻击分类器的成�
 
 <div align=center><img src="/images/22777.png"/></div>
 
+公式表示原图分类正确的情况下添加扰动后分类错误的成功率。下图是和重建Kurakin et al.比较的结果（Object-Constrained Poster-Printing Attacks）
+
 ![22999.png](/images/22999.png)
 
 

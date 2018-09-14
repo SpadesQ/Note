@@ -2,9 +2,9 @@
 
 ## 论文的目的
 
-研究 adversarial examples in the physical world，选了路标"stop"贴黑白纸条（模拟小广告=。=）
+研究 adversarial examples in the physical world，选了路标"stop"贴黑白纸条（模拟小广告=。=)
 
-![22333.png](/images/22333.png)
+<div align=center><img src="/images/22333.png"/></div>
 
 不可能随便贴去试哪个可以攻击，所以理论是在digital world研究。
 
@@ -16,7 +16,7 @@
 
 定义perturbation δ, perturbed instance x‘ = x+δ, target classifier fθ (·), y∗ is the target class
 
-![22444.png](/images/22444.png)
+<div align=center><img src="/images/22444.png"/></div>
 
 Here J(·,·) is the loss function, which measures the difference between the model’s prediction and the target labely∗ . λ is a hyper-parameter that controls the regularization of the distortion. We specify the distance function H as ||δ||p ,denoting the lp norm of δ.
 

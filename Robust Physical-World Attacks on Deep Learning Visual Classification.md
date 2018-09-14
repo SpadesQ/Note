@@ -14,7 +14,7 @@
 
 ## 论文的方法
 
-定义perturbation δ, perturbed instance x‘ = x+δ, target classifier fθ (·), y∗ is the target class
+定义perturbation δ, perturbed instance x‘ = x+δ, target classifier fθ (·), y∗ is the target class, H(x + δ, x)表示对抗样本和真实样本距离函数（尽可能小）。
 
 <div align=center><img src="/images/22444.png"/></div>
 

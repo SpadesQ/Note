@@ -41,11 +41,10 @@ Specifically, we use the following pipeline to **discover mask positions**:
 好了考虑打印的影响。To account for fabrication error, add an additional term to our objective function that models printer color reproduction errors.**This term is based upon the Non-Printability Score (NPS) by Sharif et al.**. Given a set of printable colors (RGB triples) P and a set R(δ) of (unique) RGB
 triples used in the perturbation that need to be printed out in physical world, the non-printability score is given by:
 
-![22555.png](/images/22555.png)
+<div align=center><img src="/images/22555.png"/></div>
 
 最终优化式子：
-
-![22666.png](/images/22666.png)
+<div align=center><img src="/images/22666.png"/></div>
 
 > With a perturbation in the form of only **black and white stickers**,we attack a real **stop** sign, causing targeted misclassification in **100% of the images obtained in lab settings**, and in **84.8% of the captured video frames obtained on a moving vehicle (field test)** for the target classifier.
 

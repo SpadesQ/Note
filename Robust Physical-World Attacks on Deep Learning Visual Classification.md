@@ -28,7 +28,7 @@ We model the distribution of images containing object o under **both physical an
 
 To ensure that the perturbations are only applied to the surface area of the target object o(considering the spatial constraints and physical limits on imperceptibility), we introduce a **mask**.（别把小广告贴外面了，另外人还得能看见小广告，但是还不能让人认不出"stop"）
 
-所以shape the mask to look like graffiti（mask看起来像涂鸦）。Formally, the perturbation mask is a matrix Mx whose dimensions are the same as the size of input to the road sign classifier.(mask是矩阵Mx，其尺寸与道路标志分类器的输入尺寸相同。)Mx contains zeroes in regions where no perturbation is added, and ones in regions where the perturbation is added during optimization.看下图右侧理解。
+所以**shape the mask to look like graffiti**（mask看起来像涂鸦）。Formally, the perturbation mask is a matrix Mx whose dimensions are the same as the size of input to the road sign classifier.(mask是矩阵Mx，其尺寸与道路标志分类器的输入尺寸相同。)Mx contains zeroes in regions where no perturbation is added, and ones in regions where the perturbation is added during optimization.**看下图右侧理解**。
 
 <div align=center><img src="/images/Screenshot from 2018-09-13 20-33-59.png"/></div>
 
@@ -37,6 +37,15 @@ Specifically, we use the following pipeline to **discover mask positions**:
 使用L1正则化和占据整个表面区域的mask来计算扰动。 L 1使得优化器倾向于稀疏扰动向量，因此将扰动集中在最易受攻击的区域上。 可视化产生的扰动提供了掩模放置的指导。     
 (2) Recompute perturbations using L 2 with a mask positioned on the vulnerable regions identified from the earlier step.  
 使用L2重新计算扰动，mask位于从前一步骤识别的易受攻击区域上。
+
+好了考虑打印的影响。To account for fabrication error, add an additional term to our objective function that models printer color reproduction errors.**This term is based upon the Non-Printability Score (NPS) by Sharif et al.**. Given a set of printable colors (RGB triples) P and a set R(δ) of (unique) RGB
+triples used in the perturbation that need to be printed out in physical world, the non-printability score is given by:
+
+![22555.png](/images/22555.png)
+
+最终优化式子：
+
+![22666.png](/images/22666.png)
 
 > With a perturbation in the form of only **black and white stickers**,we attack a real **stop** sign, causing targeted misclassification in **100% of the images obtained in lab settings**, and in **84.8% of the captured video frames obtained on a moving vehicle (field test)** for the target classifier.
 

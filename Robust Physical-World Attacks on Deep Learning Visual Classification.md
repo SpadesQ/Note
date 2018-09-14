@@ -14,6 +14,11 @@
 
 ## 论文的方法
 
+定义perturbation δ, perturbed instance x‘ = x+δ, target classifier fθ (·), y∗ is the target class
+
+![22444.png](/images/22444.png)
+
+Here J(·,·) is the loss function, which measures the difference between the model’s prediction and the target labely∗ . λ is a hyper-parameter that controls the regularization of the distortion. We specify the distance function H as ||δ||p ,denoting the lp norm of δ.
 
 > With a perturbation in the form of only **black and white stickers**,we attack a real **stop** sign, causing targeted misclassification in **100% of the images obtained in lab settings**, and in **84.8% of the captured video frames obtained on a moving vehicle (field test)** for the target classifier.
 

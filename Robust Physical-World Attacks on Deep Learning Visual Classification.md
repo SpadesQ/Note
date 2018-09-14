@@ -63,18 +63,15 @@ Stationary (Lab) Tests很简单，直接贴小广告，看攻击分类器的成�
 
 <div align=center><img src="/images/22777.png"/></div>
 
-公式表示原图分类正确的情况下添加扰动后分类错误的成功率。下图是和重建Kurakin et al.比较的结果（Object-Constrained Poster-Printing Attacks）
+公式表示原图分类正确的情况下添加扰动后分类错误的成功率。下图是和包括**用论文的算法**重建Kurakin et al.工作（修改海报，把整个海报贴上去）比较的结果（Object-Constrained Poster-Printing Attacks）
 
 ![22999.png](/images/22999.png)
 
+Drive-By Testing.计算攻击成功率公式不变, 车速between 0 mph and20 mph, 每10帧计算一次。下图是结果同样和**用论文的算法**重建Kurakin et al.比较。
+
+![22000.png]({{site.baseurl}}/images/22000.png)
+
+To show the generality of our approach, we generate the robust physical adversarial example by manipulating general physical objects, such as a microwave. We show that the **pre-trained Inception-v3**classifier misclassifies the microwave as “phone" by adding a single sticker.
 
 ## Q & A
-
-1.怎么保证 δ 就是 黑白方块
-
-<div align=center><img src="/images/Screenshot from 2018-09-13 20-33-59.png"/></div>
-
-2.怎么保证打印下来贴到物理标志上效果一样
-
-<div align=center><img src="/images/Screenshot from 2018-09-13 20-43-45.png"/></div>
 

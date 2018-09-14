@@ -63,8 +63,7 @@ Stationary (Lab) Tests很简单，直接贴小广告，看攻击分类器的成�
 
 <div align=center><img src="/images/22777.png"/></div>
 
-![22888.png](/images/22888.png)
-
+![22999.png](/images/22999.png)
 
 
 ## Q & A

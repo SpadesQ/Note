@@ -32,7 +32,7 @@ To ensure that the perturbations are only applied to the surface area of the tar
 
 <div align=center><img src="/images/Screenshot from 2018-09-13 20-33-59.png"/></div>
 
-Specifically, we use the following pipeline to **discover mask positions**:      
+Specifically, we use the following pipeline to **discover mask positions**:(小广告应该贴哪=。=)      
 (1) Compute perturbations using the L 1 regularization and with a mask that occupies the entire surface area of the sign. L 1 makes the optimizer favor a sparse perturbation vector, therefore concentrating the perturbations on regions that are most vulnerable. Visualizing the resulting perturbation provides guidance on mask placement.   
 使用L1正则化和占据整个表面区域的mask来计算扰动。 L 1使得优化器倾向于稀疏扰动向量，因此将扰动集中在最易受攻击的区域上。 可视化产生的扰动提供了掩模放置的指导。     
 (2) Recompute perturbations using L 2 with a mask positioned on the vulnerable regions identified from the earlier step.  

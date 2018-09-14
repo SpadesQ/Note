@@ -1,4 +1,4 @@
-> 过去笔记以翻译为主，现在重新定义笔记，笔记尽可能精简，重要的信息将保留原文
+> 过去笔记以翻译为主，现在重新定义笔记，笔记尽可能精简，重要的信息为了不曲解愿意将保留原文
 
 ## 论文的目的
 
@@ -26,11 +26,17 @@ Here J(·,·) is the loss function, which measures the difference between the mo
 
 We model the distribution of images containing object o under **both physical and digital transformations**X, 意思是包含实际的物理条件变化（包括changing distances, angles, and lightning）以及数字变换（包括change the brightness, and add spatial transformations）, 从这个分布采样xi。 过去的研究都只有数字变换对于本论文是不够的。
 
-To ensure that the perturbations are only applied to the surface area of the target object o(considering the spatial constraints and physical limits on imperceptibility), we introduce a mask.（别把小广告贴外面了，另外人还得能看见小广告，但是还不能让人认不出"stop"）
+To ensure that the perturbations are only applied to the surface area of the target object o(considering the spatial constraints and physical limits on imperceptibility), we introduce a **mask**.（别把小广告贴外面了，另外人还得能看见小广告，但是还不能让人认不出"stop"）
 
-所以shape the mask to look like graffiti（mask看起来像涂鸦）。Formally, the perturbation mask is a matrix Mx whose dimensions are the same as the size of input to the road sign classifier.(mask是矩阵Mx，其尺寸与道路标志分类器的输入尺寸相同。)Mx contains zeroes in regions where no perturbation is added, and ones in regions where the perturbation is added during optimization.
+所以shape the mask to look like graffiti（mask看起来像涂鸦）。Formally, the perturbation mask is a matrix Mx whose dimensions are the same as the size of input to the road sign classifier.(mask是矩阵Mx，其尺寸与道路标志分类器的输入尺寸相同。)Mx contains zeroes in regions where no perturbation is added, and ones in regions where the perturbation is added during optimization.看下图右侧理解。
 
 <div align=center><img src="/images/Screenshot from 2018-09-13 20-33-59.png"/></div>
+
+Specifically, we use the following pipeline to **discover mask positions**:      
+(1) Compute perturbations using the L 1 regularization and with a mask that occupies the entire surface area of the sign. L 1 makes the optimizer favor a sparse perturbation vector, therefore concentrating the perturbations on regions that are most vulnerable. Visualizing the resulting perturbation provides guidance on mask placement.   
+使用L1正则化和占据整个表面区域的mask来计算扰动。 L 1使得优化器倾向于稀疏扰动向量，因此将扰动集中在最易受攻击的区域上。 可视化产生的扰动提供了掩模放置的指导。     
+(2) Recompute perturbations using L 2 with a mask positioned on the vulnerable regions identified from the earlier step.  
+使用L2重新计算扰动，mask位于从前一步骤识别的易受攻击区域上。
 
 > With a perturbation in the form of only **black and white stickers**,we attack a real **stop** sign, causing targeted misclassification in **100% of the images obtained in lab settings**, and in **84.8% of the captured video frames obtained on a moving vehicle (field test)** for the target classifier.
 

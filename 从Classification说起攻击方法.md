@@ -25,7 +25,7 @@ where ▽J (:; :; :) 计算梯度, sign(:)是sign函数 and <a href="https://www
 
 <div align=center><img src="/images/3.png"/>  
 
-Fast Gradient L2</div>
+Fast Gradient L2(或者<a href="https://www.codecogs.com/eqnedit.php?latex=L_\infty" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L_\infty" title="L_\infty" /></a>)</div>
 
 说白了就是在原图上叠加梯度信息作为扰动，也能使分类错误
 

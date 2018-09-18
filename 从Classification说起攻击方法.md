@@ -17,8 +17,12 @@ Box-constrained L-BFGS→(R. Fletcher, Practical methods of optimization, John W
 
 ### Fast Gradient Sign Method (FGSM) 
 
-Goodfellow et al.2014
+Goodfellow et al. 2014
 
 <div align=center><img src="/images/2.png"/></div>
 
+where ▽J (:; :; :) computes the gradient of the cost function around the current value of the model parameters θ w.r.t. Ic, sign(:) denotes the sign function and \epsilon is a small scalar value
+that restricts the norm of the perturbation. The method for
+solving (3) was termed ‘Fast Gradient Sign Method’ (FGSM)
+in the original work.
 

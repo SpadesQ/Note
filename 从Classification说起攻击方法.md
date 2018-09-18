@@ -24,6 +24,7 @@ Goodfellow et al. 2014
 where ▽J (:; :; :) 计算梯度, sign(:)是sign函数 and <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon" title="\epsilon" /></a> 是一个小的标量值，限制了扰动的范数。
 
 <div align=center><img src="/images/3.png"/>  
+
 Fast Gradient L2</div>
 
 说白了就是在原图上叠加梯度信息作为扰动，也能使分类错误

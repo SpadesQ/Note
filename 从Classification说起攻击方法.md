@@ -21,8 +21,13 @@ Goodfellow et al. 2014
 
 <div align=center><img src="/images/2.png"/></div>
 
-where ▽J (:; :; :) computes the gradient of the cost function around the current value of the model parameters θ w.r.t. Ic, sign(:) denotes the sign function and \epsilon is a small scalar value
-that restricts the norm of the perturbation. The method for
-solving (3) was termed ‘Fast Gradient Sign Method’ (FGSM)
-in the original work.
+where ▽J (:; :; :) 计算梯度, sign(:)是sign函数 and \epsilon 是一个小的标量值，限制了扰动的范数。
+
+![3.png](/images/3.png)
+
+Fast Gradient L2
+
+说白了就是在原图上叠加梯度信息作为扰动，也能使分类错误
+
+上面的方法都叫做‘one-step’ or ‘one-shot’ 
 

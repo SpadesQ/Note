@@ -6,8 +6,9 @@ github上有[cleverhans](https://github.com/tensorflow/cleverhans)和[deepfool](
 
 <div align=center><img src="/images/Screenshot from 2018-09-18 20-20-34.png"/>lp就是为了让图片肉眼看上去和原图无异</div>
 
-**Box-constrained L-BFGS(R. Fletcher, Practical methods of optimization, John Wiley and Sons,2013.)**  
-Szegedy et al. 2013
+**Box-constrained L-BFGS**  
+Szegedy et al. 2013  
+Box-constrained L-BFGS→(R. Fletcher, Practical methods of optimization, John Wiley and Sons,2013.)
 
 <div align=center><img src="/images/1.png"/></div>
 

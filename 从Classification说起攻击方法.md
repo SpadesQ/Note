@@ -35,7 +35,7 @@ Fast Gradient L2(或者<a href="https://www.codecogs.com/eqnedit.php?latex=L_\in
 
 ### Basic & Least-Likely-Class Iterative Methods
 
-<div align=center><img src="/images/4.png"/>  
+<div align=center><img src="/images/4.png"/></div>  
 
 其中<a href="https://www.codecogs.com/eqnedit.php?latex=I^0_\rho=&space;I_c" target="_blank"><img src="https://latex.codecogs.com/gif.latex?I^0_\rho=&space;I_c" title="I^0_\rho= I_c" /></a>，clip{}将图片剪辑为 [0,1]，以让图片保持有效。
 

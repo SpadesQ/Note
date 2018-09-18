@@ -21,7 +21,7 @@ Goodfellow et al. 2014
 
 <div align=center><img src="/images/2.png"/></div>
 
-where ▽J (:; :; :) 计算梯度, sign(:)是sign函数 and \epsilon 是一个小的标量值，限制了扰动的范数。
+where ▽J (:; :; :) 计算梯度, sign(:)是sign函数 and <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon" title="\epsilon" /></a> 是一个小的标量值，限制了扰动的范数。
 
 ![3.png](/images/3.png)
 

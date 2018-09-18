@@ -21,13 +21,16 @@ Goodfellow et al. 2014
 
 <div align=center><img src="/images/2.png"/></div>
 
-where ▽J (:; :; :) 计算梯度, sign(:)是sign函数 and <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon" title="\epsilon" /></a> 是一个小的标量值，限制了扰动的范数。
+where ▽J (:; :; :) 计算损失函数的梯度, sign(:)是sign函数 and <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon" title="\epsilon" /></a> 是一个小的标量值，限制了扰动的范数。
+
+使用网络预测的最不可能的目标作为标签l。 然后从原始图像中减去计算出的扰动，使其成为对抗样本。
 
 <div align=center><img src="/images/3.png"/>  
 
 Fast Gradient L2(或者<a href="https://www.codecogs.com/eqnedit.php?latex=L_\infty" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L_\infty" title="L_\infty" /></a>)</div>
 
-说白了就是在原图上叠加梯度信息作为扰动，也能使分类错误
+说白了就是在原图上叠加梯度信息作为扰动，也能使分类错误。
+
 
 上面的方法都叫做‘one-step’ or ‘one-shot’ 
 

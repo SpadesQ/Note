@@ -16,4 +16,6 @@ Szegedy et al. 2013
 **Fast Gradient Sign Method (FGSM)**  
 Goodfellow et al.2014
 
-![2.png](/images/2.png)
+<div align=center><img src="/images/2.png"/></div>
+
+

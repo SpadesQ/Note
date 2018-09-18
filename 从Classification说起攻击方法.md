@@ -4,6 +4,8 @@
 
 github上有[cleverhans](https://github.com/tensorflow/cleverhans)和[deepfool](https://github.com/LTS4/DeepFool)这两个库（python的）都可以实现当下主流的对抗样本生成。
 
+下图为论文(Threat of Adversarial Attacks on Deep Learning in Computer Vision: A Survey)总结的12种攻击方法。
+
 <div align=center><img src="/images/Screenshot from 2018-09-18 20-20-34.png"/>lp就是为了让图片肉眼看上去和原图无异</div>
 
 ### Box-constrained L-BFGS

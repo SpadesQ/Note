@@ -31,6 +31,10 @@ where ▽J (:; :; :) 计算损失函数的梯度, sign(:)是sign函数 and <a hr
 
 Fast Gradient L2(或者<a href="https://www.codecogs.com/eqnedit.php?latex=L_\infty" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L_\infty" title="L_\infty" /></a>)</div>
 
-上面的方法都叫做‘one-step’ or ‘one-shot’ 
+上面的方法都叫做‘one-step’ or ‘one-shot’。 
 
 ### Basic & Least-Likely-Class Iterative Methods
+
+![4.png](/images/4.png)
+
+Madry et al. 指出BIM相当于第一版的投影梯度下降（PGD），一种标准的凸优化方法。

@@ -46,3 +46,22 @@ clip{}对X’每像素裁剪，结果为原图X的<a href="https://www.codecogs.
 <div align=center><img src="/images/5.png"/></div>  
 
 Madry et al. 指出BIM相当于第一版的投影梯度下降（PGD），一种标准的凸优化方法。
+
+### Jacobian-based Saliency Map Attack (JSMA)
+
+和前面<a href="https://www.codecogs.com/eqnedit.php?latex=l_\infty&space;l_2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?l_\infty&space;l_2" title="l_\infty l_2" /></a>不同于用l0-norm，在物理上，这意味着目标是仅修改图像中的几个像素而不是扰乱整个图像以欺骗分类器。
+
+该算法一次一个地修改原始图像的像素，并监视改变对结果分类的影响。 通过使用网络层的输出的梯度计算saliency map来执行监视。 在该map中，较大的值表示欺骗网络以将l_target预测为图像的标签比原始标签l的可能性更高。 因此，该算法执行有针对性的愚弄。 一旦计算出map，算法就会选择最有效的像素来欺骗网络并改变它。 重复该过程，直到在对抗图像中改变允许像素的最大数量或者愚弄成功为止。
+
+### One Pixel Attack
+
+Su et al.	
+顾名思义，只修改图像中的一个像素。通过使用差分进化的概念来计算对抗样本。对于原始图像Ic，创建400向量使其包含任意候选像素的xy-coordinates and RGB，随机修改一个向量，概率预测标签用作评判标准，如此进化，直到找到最好的。差异进化能够生成对抗样本，而无需访问有关网络参数值或梯度的任何信息。 他们的技术需要的唯一输入是目标模型预测的概率标签。
+
+![7.png](/images/7.png)
+
+
+
+
+
+

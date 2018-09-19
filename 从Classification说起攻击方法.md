@@ -25,13 +25,13 @@ Goodfellow et al. 2014
 
 where ▽J (:; :; :) 计算损失函数的梯度, sign(:)是sign函数 and <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon" title="\epsilon" /></a> 是一个小的标量值，限制了扰动的范数。
 
-使用网络预测的最不可能的目标作为标签l。 然后从原始图像中减去计算出的扰动，使其成为对抗样本。
+使用网络预测的最不可能的目标作为标签l。 然后从原始图像中减去计算出的扰动，使其成为对抗样本。将此方法称为“快速”，因为它不需要迭代过程来计算对抗样本，因此比其他方法快得多。
 
 <div align=center><img src="/images/3.png"/>  
 
 Fast Gradient L2(或者<a href="https://www.codecogs.com/eqnedit.php?latex=L_\infty" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L_\infty" title="L_\infty" /></a>)</div>
 
-上面的方法都叫做‘one-step’ or ‘one-shot’。 
+<font color=red>上面的方法都叫做‘one-step’ or ‘one-shot’。 </font>
 
 ### Basic & Least-Likely-Class Iterative Methods
 

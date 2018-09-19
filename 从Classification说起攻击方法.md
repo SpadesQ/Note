@@ -37,7 +37,7 @@ _上面的方法都叫做‘one-step’ or ‘one-shot’。_
 
 相当于上面 “fast”方法的扩展。为什么要迭代？这种迭代量是启发式选择的，对抗样本足以到达<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon" title="\epsilon" /></a>max-norm ball边缘而又能掌控计算花费。
 
-![4.png](/images/4.png)
+![6.png](/images/6.png)
 
 其中<a href="https://www.codecogs.com/eqnedit.php?latex=I^0_\rho=&space;I_c" target="_blank"><img src="https://latex.codecogs.com/gif.latex?I^0_\rho=&space;I_c" title="I^0_\rho= I_c" /></a>，迭代次数<a href="https://www.codecogs.com/eqnedit.php?latex=\left&space;\lfloor&space;min(\epsilon&plus;4;&space;1.25\epsilon&space;)&space;\right&space;\rfloor" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\left&space;\lfloor&space;min(\epsilon&plus;4;&space;1.25\epsilon&space;)&space;\right&space;\rfloor" title="\left \lfloor min(\epsilon+4; 1.25\epsilon ) \right \rfloor" /></a>，已经训练好的分类模型θ是固定的。
 

@@ -31,9 +31,11 @@ where ▽J (:; :; :) 计算损失函数的梯度, sign(:)是sign函数 and <a hr
 
 Fast Gradient L2(或者<a href="https://www.codecogs.com/eqnedit.php?latex=L_\infty" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L_\infty" title="L_\infty" /></a>)</div>
 
-<font color=Crimson>上面的方法都叫做‘one-step’ or ‘one-shot’。 </font>
+_上面的方法都叫做‘one-step’ or ‘one-shot’。_
 
 ### Basic & Least-Likely-Class Iterative Methods
+
+相当于上面 “fast”方法的扩展。为什么要迭代？这种迭代量是启发式选择的，对抗样本足以到达<a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon" title="\epsilon" /></a>max-norm bal边缘而又能掌控计算花费。
 
 <div align=center><img src="/images/4.png"/></div>  
 

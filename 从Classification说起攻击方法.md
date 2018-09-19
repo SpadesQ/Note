@@ -49,7 +49,7 @@ Madry et al. 指出BIM相当于第一版的投影梯度下降（PGD），一种�
 
 ### Jacobian-based Saliency Map Attack (JSMA)
 
-和前面<a href="https://www.codecogs.com/eqnedit.php?latex=l_\infty&space;l_2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?l_\infty&space;l_2" title="l_\infty l_2" /></a>不同于用l0-norm，在物理上，这意味着目标是仅修改图像中的几个像素而不是扰乱整个图像以欺骗分类器。
+和前面<a href="https://www.codecogs.com/eqnedit.php?latex=l_\infty&space;l_2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?l_\infty&space;l_2" title="l_\infty l_2" /></a>不同于用l_0-norm，在物理上，这意味着目标是仅修改图像中的几个像素而不是扰乱整个图像以欺骗分类器。
 
 该算法一次一个地修改原始图像的像素，并监视改变对结果分类的影响。 通过使用网络层的输出的梯度计算saliency map来执行监视。 在该map中，较大的值表示欺骗网络以将l_target预测为图像的标签比原始标签l的可能性更高。 因此，该算法执行有针对性的愚弄。 一旦计算出map，算法就会选择最有效的像素来欺骗网络并改变它。 重复该过程，直到在对抗图像中改变允许像素的最大数量或者愚弄成功为止。
 
@@ -61,6 +61,16 @@ Su et al.
 
 <div align=center><img src="/images/7.png"/></div>  
 
+1) L0 distance measures xi ≠ xi‘的坐标数量，也就是可以替换像素的数量。Papernot et al. 认为使用L0 distance
+metric, and it is the primary distance metric under which
+defensive distillation’s security is argued [39].
+2) L2 distance measures x and x0标准欧几里德（均方根）距离。 The L2 distance can remain small when there are many small changes to many pixels.(最初的论文Intriguing properties of neural networks. ICLR (2013).用了L2)
+3) L无穷 distance measures the maximum change to any of the coordinates:
+<a href="https://www.codecogs.com/eqnedit.php?latex=\left&space;\|&space;x-x'&space;\right&space;\|_&space;\infty&space;=&space;max(\left&space;|&space;x_1-x_1'&space;\right&space;|,...&space;,&space;\left&space;|&space;x_n-x_n'&space;\right&space;|)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\left&space;\|&space;x-x'&space;\right&space;\|_&space;\infty&space;=&space;max(\left&space;|&space;x_1-x_1'&space;\right&space;|,...&space;,&space;\left&space;|&space;x_n-x_n'&space;\right&space;|)" title="\left \| x-x' \right \|_ \infty = max(\left | x_1-x_1' \right |,... , \left | x_n-x_n' \right |)" /></a>For images, we can imagine there is a maximum budget,and each pixel is allowed to be changed by up to this limit, with no limit on the number of pixels that are modified.
+
+###  Carlini and Wagner Attacks (C&W)
+
+Code:[点我](https://nicholas.carlini.com/code)
 
 
 

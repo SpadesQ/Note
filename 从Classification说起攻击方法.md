@@ -39,7 +39,7 @@ Fast Gradient L2(或者<a href="https://www.codecogs.com/eqnedit.php?latex=L_\in
 
 其中<a href="https://www.codecogs.com/eqnedit.php?latex=I^0_\rho=&space;I_c" target="_blank"><img src="https://latex.codecogs.com/gif.latex?I^0_\rho=&space;I_c" title="I^0_\rho= I_c" /></a>，迭代次数<a href="https://www.codecogs.com/eqnedit.php?latex=\left&space;\lfloor&space;min(\epsilon&plus;4;&space;1.25\epsilon&space;)&space;\right&space;\rfloor" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\left&space;\lfloor&space;min(\epsilon&plus;4;&space;1.25\epsilon&space;)&space;\right&space;\rfloor" title="\left \lfloor min(\epsilon+4; 1.25\epsilon ) \right \rfloor" /></a>，已经训练好的分类模型θ是固定的。
 
-clip{}将图片裁剪为<a href="https://www.codecogs.com/eqnedit.php?latex=L_\infty&space;\epsilon-neighbourhood" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L_\infty&space;\epsilon-neighbourhood" title="L_\infty \epsilon-neighbourhood" /></a>。函数如下：
+clip{}对X’每像素裁剪，结果为<a href="https://www.codecogs.com/eqnedit.php?latex=L_\infty&space;\epsilon-neighbourhood" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L_\infty&space;\epsilon-neighbourhood" title="L_\infty \epsilon-neighbourhood" /></a>。函数如下：
 
 <div align=center><img src="/images/5.png"/></div>  
 

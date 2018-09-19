@@ -37,6 +37,6 @@ Fast Gradient L2(或者<a href="https://www.codecogs.com/eqnedit.php?latex=L_\in
 
 <div align=center><img src="/images/4.png"/></div>  
 
-其中<a href="https://www.codecogs.com/eqnedit.php?latex=I^0_\rho=&space;I_c" target="_blank"><img src="https://latex.codecogs.com/gif.latex?I^0_\rho=&space;I_c" title="I^0_\rho= I_c" /></a>，clip{}将图片剪辑为 [0,1]，以让图片保持有效。
+其中<a href="https://www.codecogs.com/eqnedit.php?latex=I^0_\rho=&space;I_c" target="_blank"><img src="https://latex.codecogs.com/gif.latex?I^0_\rho=&space;I_c" title="I^0_\rho= I_c" /></a>，迭代次数<a href="https://www.codecogs.com/eqnedit.php?latex=\left&space;\lfloor&space;min(\epsilon&plus;4;&space;1.25\epsilon&space;)&space;\right&space;\rfloor" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\left&space;\lfloor&space;min(\epsilon&plus;4;&space;1.25\epsilon&space;)&space;\right&space;\rfloor" title="\left \lfloor min(\epsilon+4; 1.25\epsilon ) \right \rfloor" /></a>，clip{}将图片剪辑为 [0,1]，以让图片保持有效。
 
 Madry et al. 指出BIM相当于第一版的投影梯度下降（PGD），一种标准的凸优化方法。

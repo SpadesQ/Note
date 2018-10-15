@@ -55,3 +55,15 @@ fi
 
 cd ..
 ```
+
+
+InternalError (see above for traceback): Dst tensor is not initialized.
+[[Node: zeros_24 = Constdtype=DT_FLOAT, value=Tensor<type: float shape: [25088,4096] values: [0 0 0]...>, _device="/job:localhost/replica:0/task:0/gpu:0"]]
+
+I had the same issue and I managed to fix it by adding a gpu flag in demo.py
+Change:
+sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True))
+To
+config = tf.ConfigProto(allow_soft_placement=True)
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)

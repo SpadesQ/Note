@@ -67,3 +67,16 @@ To
 config = tf.ConfigProto(allow_soft_placement=True)
 config.gpu_options.allow_growth = True
 sess = tf.Session(config=config)
+
+
+
+## SSD问题
+
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+
+在是使用Tensorflow读取图片文件的情况下，会出现这个报错
+
+image_data = tf.gfile.FastGFile(filename, 'r').read()
+改为
+image_data = tf.gfile.FastGFile(filename, 'rb').read()
+

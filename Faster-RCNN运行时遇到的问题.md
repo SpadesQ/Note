@@ -72,7 +72,7 @@ sess = tf.Session(config=config)
 
 ## SSD问题
 
-UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+UnicodeDeco****deError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
 
 在是使用Tensorflow读取图片文件的情况下，会出现这个报错
 
@@ -80,3 +80,17 @@ image_data = tf.gfile.FastGFile(filename, 'r').read()
 改为
 image_data = tf.gfile.FastGFile(filename, 'rb').read()
 
+****SSD-Tensorflow:TypeError: Can not convert a tuple into a Tensor or Operation
+
+I got the same error. use the function
+
+def flatten(x): 
+         result = [] 
+         for el in x: 
+              if isinstance(el, tuple): 
+                    result.extend(flatten(el))
+              else: 
+                    result.append(el) 
+          return result
+
+in eval_op=flatten(list(names_to_updates.values())),, it works for me.
